@@ -1,14 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %} Home monitoring ! {% endblock %}
 
 {% block body %}
 
 <div class="container">
+    <div class="head text-center my-5">
+        <h1>Accueil</h1>
+        <h3>Votre site de monitoring en ligne</h3>
+    </div>
+    <div class="conteneur d-flex flex-wrap">
 
+        {% for website in websites %}
 
-    <h1 class="text-center my-5"> Accueil </h1>
+        <div class="element col-4 my-1">
+            <div class="card bg-success text-white mb-3 website-card">
+                <div class="card-header website-card-title">
+                    <h4> {{ website.name }} </h4>
+                    <small> {{ website.url }} </small>
+                </div>
+                <div class="card-body">
+                    <div class="website-card-code">
+                        HTTP: 200
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-lg btn-white">
+                        Voir la fiche 
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        {% endfor %}
 
+    </div>
 </div>
 {% endblock %}
