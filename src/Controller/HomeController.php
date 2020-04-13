@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Website;
 use App\Repository\WebsiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +23,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/website/{id}", name="website_show")
      */
-    public function show()
+    public function show(Website $website)
     {
         return $this->render('home/show.html.twig', [
-            
+        'website' => $website
         ]);
     }
 }
