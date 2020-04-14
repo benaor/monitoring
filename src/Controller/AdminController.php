@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Website;
+use App\Form\WebsiteType;
 use App\Repository\WebsiteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
@@ -23,9 +24,12 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/new", name="admin_new")
      */
-    public function newWebsite(FormBuilder $form)
+    public function newWebsite()
     {
-        $form = $
-        return $this->render('admin/new-website.html.twig');
+        $website = new Website();
+        $form = $this->createForm(WebsiteType::class, $website);
+        return $this->render('admin/new.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
