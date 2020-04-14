@@ -22,9 +22,22 @@ class HomeController extends AbstractController
         $status = $statusRepo->getLastStatus($count);
         return $this->render('home/index.html.twig', [
             'websites' => $websites,
-            'status'=> $status
+            'status' => $status
         ]);
     }
+
+    /**
+     * @Route("/website/clean", name="clean")
+     */
+    public function clean(StatusRepository $statusRepo)
+    {
+        //Delete all status
+        $statusRepo->cleanStatusHistory();
+        $this->addFlash('warning', 'Cleanning Successful');
+        //redirect To HomePage
+        return $this->redirectToRoute('home');
+    }
+
 
     /**
      * @Route("/website/analyse", name="analyse")

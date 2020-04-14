@@ -32,6 +32,12 @@ class StatusRepository extends ServiceEntityRepository
         ;
     }
     
+    public function cleanStatusHistory(){
+        return $this->createQueryBuilder('s')
+                    ->delete()
+                    ->getQuery()
+                    ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Status
