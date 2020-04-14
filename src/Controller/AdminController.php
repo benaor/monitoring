@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\WebsiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -15,7 +16,16 @@ class AdminController extends AbstractController
     {
         $website = $websiteRepo->findAll();
         return $this->render('admin/admin.html.twig', [
-            'websites'=> $website
+            'websites' => $website
         ]);
+    }
+
+    /**
+     * @Route("/admin/new", name="admin_new")
+     */
+    public function newWebsite(FormBuilder $form)
+    {
+        $form = $
+        return $this->render('admin/new-website.html.twig');
     }
 }
