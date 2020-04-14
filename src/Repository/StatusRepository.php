@@ -19,18 +19,18 @@ class StatusRepository extends ServiceEntityRepository
         parent::__construct($registry, Status::class);
     }
 
-    // /**
-    //  * @return Status[] Returns an array of Status objects
-    //  */
-    // public function getLastStatus($value)
-    // {
-    //     return $this->createQueryBuilder('s')
-    //         ->setMaxResults($value)
-    //         ->orderBy('s.id', 'DESC')
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    /**
+     * @return Status[] Returns an array of Status objects
+     */
+    public function getLastStatus($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->setMaxResults($value)
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
 
     /*
