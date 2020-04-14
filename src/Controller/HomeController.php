@@ -38,16 +38,16 @@ class HomeController extends AbstractController
             $response = curl_exec($handle);
             $code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
             curl_close($handle);
-            
+
+            // create new entity status and register in database
             $status = new Status();
             $status->setCode($code)
-                    ->setReportedAt(new \DateTime())
-                    ->setWebsite($site);
+                ->setReportedAt(new \DateTime())
+                ->setWebsite($site);
             $manager->persist($status);
         }
         $manager->flush();
-        // create new entity status et register in database
-        // redirect to route ('home')
+
         return $this->redirectToRoute('home');
     }
 
