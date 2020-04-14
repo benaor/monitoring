@@ -13,16 +13,34 @@
         <thead>
             <tr>
             <th scope="col">URL</th>
+            <th scope="col">Date</th>
             <th scope="col">Code HTTP</th>
             <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
+           {% for status in website.statuses %}
+
             <tr>
-            <th scope="row">{{ website.url }}</th>
-            <td>200</td>
-            <td><i class="fas fa-check-circle"></i></td>
+                <th scope="row">{{ website.url }}</th>
+                <td>{{ status.reportedAt | date('d-m-Y, H:i:s') }}</td>
+                <td>200</td>
+                <td>
+                    {% if status.code == 200 or status.code == 301 or status.code == 302 %}
+                        <i class="fas fa-check-circle"></i>
+
+                    {% elseif status.code == 404 %}
+                        <i class="fas fa-exclamation-triangle"></i>
+
+                    {% else %}
+                        <i class="fas fa-exclamation-circle"></i>
+
+                    {% endif %}
+
+                </td>
             </tr>
+
+           {% endfor %}
         </tbody>
     </table>
 </div>

@@ -9,23 +9,43 @@
         <h1>Accueil</h1>
         <h3>Votre site de monitoring en ligne</h3>
     </div>
+
+    <div class="d-flex justify-content-around my-5">
+        <a href="{{ path('analyse') }}" class="btn btn-info">
+            <i class="fas fa-tool"></i> Lancer le diagnostique
+        </a>
+    </div>
+
     <div class="conteneur d-flex flex-wrap">
 
-        {% for website in websites %}
+        {% for currentStatus in status %}
 
         <div class="element col-4 my-1">
             <div class="card bg-success text-white mb-3 website-card">
                 <div class="card-header website-card-title">
-                    <h4> {{ website.name }} </h4>
-                    <small> {{ website.url }} </small>
+                    <h4> {{ currentStatus.website.name }} </h4>
+                    <small> {{ currentStatus.website.url }} </small>
                 </div>
                 <div class="card-body">
                     <div class="website-card-code">
-                        HTTP: 200
+
+                        HTTP: {{ currentStatus.code}}
+
+                        {% if currentStatus.code == 200 or currentStatus.code == 301 or currentStatus.code == 302 %}
+                        <i class="fas fa-check-circle"></i>
+
+                        {% elseif currentStatus.code == 404 %}
+                            <i class="fas fa-exclamation-triangle"></i>
+
+                        {% else %}
+                            <i class="fas fa-exclamation-circle"></i>
+
+                        {% endif %}
+
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ path('website_show', {'id' : website.id }) }}" class="btn btn-lg btn-white">
+                    <a href="{{ path('website_show', {'id' : currentStatus.website.id }) }}" class="btn btn-lg btn-white">
                         Voir la fiche 
                     </a>
                 </div>

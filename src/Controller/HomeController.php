@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Status;
 use App\Entity\Website;
+use App\Repository\StatusRepository;
 use App\Repository\WebsiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,14 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(WebsiteRepository $websiteRepo)
+    public function index(WebsiteRepository $websiteRepo, StatusRepository $statusRepo)
     {
         $websites = $websiteRepo->findAll();
+        $count = count($websites);
+        $status = $statusRepo->getLastStatus($count);
         return $this->render('home/index.html.twig', [
             'websites' => $websites,
+            'status'=> $status
         ]);
     }
 
@@ -47,6 +51,11 @@ class HomeController extends AbstractController
             $manager->persist($status);
         }
         $manager->flush();
+
+        $this->addFlash(
+            'success',
+            'le diagnostic a bien été effectué!'
+        );
 
         return $this->redirectToRoute('home');
     }
