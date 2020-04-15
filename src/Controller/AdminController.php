@@ -32,8 +32,7 @@ class AdminController extends AbstractController
         $form = $this->createForm(WebsiteType::class, $website);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($website);
             $manager->flush();
             $this->addFlash('success', 'Vous avez ajouté un nouveau site');
@@ -44,4 +43,17 @@ class AdminController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/admin/{id}/delete", name="admin_delete")
+     */
+    public function deleteWebsite(Website $website, EntityManagerInterface $manager)
+    {
+        $manager->remove($website);
+        $manager->flush();
+        $this->addFlash('danger', 'Le site  été supprimer de votre dashboard');
+        return $this->redirectToRoute('admin_dashboard');
+    }
+
+
 }
