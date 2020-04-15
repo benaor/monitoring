@@ -20,6 +20,9 @@ class Website
     private $id;
 
     /**
+     * @Assert\Url(
+     *    message = "The url '{{ value }}' is not a valid url",
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $url;
@@ -28,8 +31,8 @@ class Website
      * @Assert\Length(
      *      min = 5,
      *      max = 50,
-     *      minMessage = "Vous devez inscrire au moins {{ limit }} caracteres",
-     *      maxMessage = "Vous devez inscrire au maximum {{ limit }} caracteres",
+     *      minMessage = "le nom doit faire au moins {{ limit }} caracteres",
+     *      maxMessage = "le nom doit faire au maximum {{ limit }} caracteres",
      *)
      *      allowEmptyString = false
      * @ORM\Column(type="string", length=255)

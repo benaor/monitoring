@@ -15,7 +15,7 @@ class WebsiteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url', UrlType::class, [
+            ->add('url', TextType::class, [
                 'label' => 'URL du site web',
                 'attr' => [
                     'placeholder' => 'entrez l\'URL'
