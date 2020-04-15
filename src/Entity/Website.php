@@ -26,7 +26,7 @@ class Website
 
     /**
      * @Assert\Length(
-     *      min = 4,
+     *      min = 5,
      *      max = 50,
      *      minMessage = "Vous devez inscrire au moins {{ limit }} caracteres",
      *      maxMessage = "Vous devez inscrire au maximum {{ limit }} caracteres",
