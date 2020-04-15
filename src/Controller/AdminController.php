@@ -55,5 +55,14 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_dashboard');
     }
 
-
+    /**
+     * @Route("/admin/{id}/edit", name="admin_edit")
+     */
+    public function editWebsite(Website $website, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(WebsiteType::class, $website);
+        return $this->render('admin/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 }
