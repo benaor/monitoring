@@ -2,14 +2,29 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Admin;
 use App\Entity\Website;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
+        // Fixtures Admin
+        $admin = new Admin();
+        $admin->setEmail('admin@admin.com')
+            ->setPassword('azerty');
+        $encoded = $this->encoder->encodePassword($admin, $admin->getPassword());
+        $admin->setPassword($encoded);
+        $manager->persist($admin);
+
         // fixtures youtube
         $website = new Website();
         $website->setName('Youtube')
