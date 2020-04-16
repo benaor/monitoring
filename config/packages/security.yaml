@@ -4,7 +4,7 @@ security:
             algorithm: bcrypt
     providers:
         users_in_memory: { memory: null }
-        auth: 
+        admin_login: 
             entity: 
                 class: App\Entity\Admin
                 property: email
@@ -16,7 +16,7 @@ security:
             pattern: ^/
             anonymous: true
 
-            provider: auth
+            provider: admin_login
 
             form_login:
                 # road to login form ?
@@ -28,7 +28,7 @@ security:
 
             logout: 
                 # Road for logout 
-                logout_path: admin_logout
+                path: admin_logout
                 # where redirect after logout ?
                 target: home
 

@@ -67,8 +67,9 @@ class Admin implements UserInterface
         return ['ROLE_ADMIN'];
     }
 
-    public function getSalt(){
-
+    public function getSalt()
+    {
+        // Don't need it so i leave it empty
     }
 
     public function eraseCredentials()

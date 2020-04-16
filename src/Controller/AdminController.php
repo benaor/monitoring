@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminController extends AbstractController
 {
@@ -26,9 +27,20 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/login", name="admin_login")
      */
-    public function login()
+    public function login(AuthenticationUtils $auth)
     {
-        return $this->render('admin/login.html.twig');
+        $error = $auth->getLastAuthenticationError();
+        return $this->render('admin/login.html.twig', [
+            'error' => $error !== null
+        ]);
+    }
+
+    /**
+     * @Route("/admin/logout", name="admin_logout")
+     */
+    public function logout()
+    {
+        $this->addFlash('danger', 'Vous avez été déconnecté');
     }
 
     /**

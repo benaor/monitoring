@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form action="">
+                <form action="{{ path('admin_login') }}" method="post" >
                     <fieldset>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Email" name="_username">
@@ -24,6 +24,11 @@
                             <input type="password" class="form-control" placeholder="Mot de passe" name="_password">
                         </div>
                         <button type="submit" class="btn btn-lg btn-success btn-lock"> Me connecter </button>
+                        {% if error %}
+                            <div class="alert alert-danger mt-2 text-center">
+                                <p> La connexion a échoué </p>
+                            </div>
+                        {% endif %}
                     </fieldset>
                 </form>
             </div>
