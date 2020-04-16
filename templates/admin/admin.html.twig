@@ -38,7 +38,7 @@
                     <td>{{ website.name }}</td>
                     <td>{{ website.url }}</td>
                     <td>
-                        {# <a href="" role="button" class="btn btn-info"><i class="fas fa-sync"></i></a> #}
+                        <a href="{{ path('admin_edit', {'id': website.id }) }}" role="button" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         <a href="{{ path('admin_delete', {'id': website.id }) }}" role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
