@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un site web {% endblock %}
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <div class="panel panel-default">
+                <div class"panel-heading">
+                    <h3 class="panel-title my-5">
+                        Connexion a l'Admin
+                    </h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form action="">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" name="_username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="_password">
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-success btn-lock"> Me connecter </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

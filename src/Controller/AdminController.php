@@ -24,6 +24,14 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/login", name="admin_login")
+     */
+    public function login()
+    {
+        return $this->render('admin/login.html.twig');
+    }
+
+    /**
      * @Route("/admin/new", name="admin_new")
      */
     public function newWebsite(Request $request, EntityManagerInterface $manager)
