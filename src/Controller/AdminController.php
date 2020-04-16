@@ -10,11 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin_dashboard")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(WebsiteRepository $websiteRepo)
     {
